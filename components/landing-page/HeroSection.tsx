@@ -7,12 +7,12 @@ const HeroSection = () => {
       id="home"
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4"
     >
-      {/* Background decorative blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#FFAEBC] opacity-20 rounded-blob animate-blob-wobble" />
-        <div className="absolute top-40 -right-10 w-48 h-48 bg-[#B4F8C8] opacity-20 rounded-blob animate-blob-wobble animation-delay-2000" />
-        <div className="absolute bottom-40 left-10 w-32 h-32 bg-[#E0BBE4] opacity-20 rounded-blob animate-blob-wobble animation-delay-1000" />
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-[#FBE7C6] opacity-20 rounded-blob animate-blob-wobble animation-delay-3000" />
+      {/* Background decorative blobs - hidden on mobile for text readability */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
+        <div className="absolute -top-20 -left-20 w-48 md:w-64 h-48 md:h-64 bg-[#FFAEBC] opacity-15 rounded-blob animate-blob-wobble" />
+        <div className="absolute top-40 -right-10 w-36 md:w-48 h-36 md:h-48 bg-[#B4F8C8] opacity-15 rounded-blob animate-blob-wobble animation-delay-2000" />
+        <div className="absolute bottom-40 left-10 w-24 md:w-32 h-24 md:h-32 bg-[#E0BBE4] opacity-15 rounded-blob animate-blob-wobble animation-delay-1000" />
+        <div className="absolute bottom-20 right-20 w-32 md:w-40 h-32 md:h-40 bg-[#FBE7C6] opacity-15 rounded-blob animate-blob-wobble animation-delay-3000" />
       </div>
 
       {/* Floating decorative dots
@@ -75,12 +75,12 @@ const HeroSection = () => {
       {/* Floating Mascot - Blue Blob Character */}
       <div className="absolute bottom-0 left-20 -translate-x-1/2 z-0 pointer-events-none">
         <div className="relative animate-float-slow">
-          <div className="w-180 h-180 sm:w-152 sm:h-152 md:w-164 md:h-164 relative">
+          <div className="w-150 md:w-144 md:h-144 xl:h-144 relative">
             <Image
               src="/mascot-happy.svg"
               alt="Excited Rambl Mascot"
               fill
-              className="object-contain opacity-90" // Adjust opacity if you want it subtle, or remove for full color
+              className="object-contain opacity-80"
             />
           </div>
         </div>

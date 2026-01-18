@@ -118,8 +118,8 @@ export default function SignUp({ onSwitchToLogin }: SignUpProps) {
 
   return (
     <div className="w-full">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-[#7A7A7A]">
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[#7A7A7A]">
           welcome to <span className="text-[#7EC8E3]">rambl</span>
         </h1>
       </div>
