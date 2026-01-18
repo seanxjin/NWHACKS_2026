@@ -4,7 +4,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import {
   Send,
   Check,
-  ArrowRight,
   Smile,
   Mic,
   MicOff,
@@ -695,7 +694,7 @@ export default function DialoguePhase({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-between px-4 py-3 bg-[#FAFAFA] border-t border-[#F0F0F0]">
+          <div className="flex items-center justify-end px-4 py-3 bg-[#FAFAFA] border-t border-[#F0F0F0]">
             <button
               onClick={handleDone}
               disabled={messages.length < 2}
@@ -703,17 +702,6 @@ export default function DialoguePhase({
             >
               <Check size={16} />
               I&apos;m Done
-            </button>
-            <button
-              onClick={() => inputRef.current?.focus()}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all hover:shadow-md cursor-pointer text-sm"
-              style={{
-                backgroundColor: `${colors.accentLight}40`,
-                color: colors.accentDark,
-              }}
-            >
-              Continue
-              <ArrowRight size={16} />
             </button>
           </div>
         </div>
