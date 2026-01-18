@@ -10,10 +10,49 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Rambl",
+  title: {
+    default: "Rambl",
+    template: "%s | Rambl",
+  },
   description:
     "A playfully soft platform to help you ramble through your thoughts",
-  icons: "/simple.svg",
+  applicationName: "Rambl",
+
+  icons: {
+    icon: "/simple.svg",
+    shortcut: "/simple.svg",
+    apple: "/simple.svg",
+  },
+
+  openGraph: {
+    title: "Rambl",
+    description:
+      "A playfully soft platform to help you ramble through your thoughts",
+    url: "https://rambl.tech",
+    siteName: "Rambl",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 1200,
+        height: 630,
+        alt: "Rambl preview",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Rambl",
+    description:
+      "A playfully soft platform to help you ramble through your thoughts",
+    images: ["/icon.svg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
