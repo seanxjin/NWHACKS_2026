@@ -27,9 +27,9 @@ export default function DialoguePhase({
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasInitialResponse, setHasInitialResponse] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const initialMessageSentRef = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -96,18 +96,22 @@ export default function DialoguePhase({
 
   // Send initial message on mount
   useEffect(() => {
-    if (!hasInitialResponse && initialMessage) {
-      const userMsg: Message = {
-        id: Date.now().toString(),
-        role: "user",
-        content: initialMessage,
-        timestamp: new Date(),
-      };
-      setMessages([userMsg]);
-      sendMessage(initialMessage, []);
-      setHasInitialResponse(true);
+    if (initialMessageSentRef.current || !initialMessage) {
+      return;
     }
-  }, [initialMessage, hasInitialResponse, sendMessage]);
+
+    // Mark as sent immediately to prevent double-send in Strict Mode
+    initialMessageSentRef.current = true;
+
+    const userMsg: Message = {
+      id: Date.now().toString(),
+      role: "user",
+      content: initialMessage,
+      timestamp: new Date(),
+    };
+    setMessages([userMsg]);
+    sendMessage(initialMessage, []);
+  }, [initialMessage, sendMessage]);
 
   const handleSend = () => {
     if (inputValue.trim() && !isLoading) {
