@@ -69,7 +69,7 @@ const MotivationSection = () => {
           {factCards.map((card, idx) => (
             <div
               key={idx}
-              className="bg-white p-8 rounded-[24px] shadow-soft hover:shadow-soft-lg hover:-translate-y-2 transition-all duration-300 group"
+              className="bg-white p-6 md:p-8 rounded-[24px] shadow-soft hover:shadow-soft-lg hover:-translate-y-2 transition-all duration-300 group"
             >
               {/* Stat */}
               <div className="text-5xl md:text-6xl font-bold text-[#7EC8E3] mb-2">

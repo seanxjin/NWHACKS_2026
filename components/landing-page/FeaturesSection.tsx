@@ -246,26 +246,20 @@ const FeaturesSection = () => {
                   <div
                     key={idx}
                     // Added z-0 here to create a base stacking context for the item group
-                    className={`relative z-0 flex gap-6 items-start group ${
-                      idx !== features.length - 1 ? "pb-12" : ""
+                    className={`relative z-0 flex gap-4 sm:gap-6 items-start group ${
+                      idx !== features.length - 1 ? "pb-10 sm:pb-12" : ""
                     }`}
                   >
                     {/* The Line */}
                     {idx !== features.length - 1 && (
                       <div
-                        // FIX: Added explicitly low z-index (z-[-1])
-                        // We keep top-14 so it doesn't show through the transparent icon.
-                        // The negative z-index ensures it stays behind everything else in this relative container.
-                        className="absolute z-[-1] left-7 top-14 bottom-0 w-px border-l-2 border-dashed border-[#E5E5E5] -ml-[1px]"
+                        className="absolute z-[-1] left-6 sm:left-7 top-12 sm:top-14 bottom-0 w-px border-l-2 border-dashed border-[#E5E5E5] -ml-[1px]"
                         aria-hidden="true"
                       />
                     )}
 
                     <div
-                      // FIX: Ensure the icon is explicitly higher than the line.
-                      // z-10 is usually enough, but group-hover:z-20 ensures it pops
-                      // to the absolute front during the scale animation.
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300 relative z-10 group-hover:z-20"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300 relative z-10 group-hover:z-20"
                       style={{
                         backgroundColor: `${feature.color}20`,
                         color: feature.color,

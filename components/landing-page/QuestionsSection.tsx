@@ -23,11 +23,6 @@ const QuestionsSection = () => {
         "No, and we want to be clear about that. Rambl is a supportive tool for everyday emotional processing, not a substitute for professional mental health care. If you're struggling, we encourage you to seek help from a licensed professional.",
     },
     {
-      question: "Can I use Rambl for free?",
-      answer:
-        "Yes! We offer a generous free tier because we believe everyone deserves access to emotional support. Premium features are available for those who want more, but the core experience is always free.",
-    },
-    {
       question: "How does the AI work?",
       answer:
         "We use advanced language models trained to be empathetic and supportive. The AI doesn't store your personal information between sessions—it's designed to be a present, attentive listener in the moment.",
@@ -71,9 +66,9 @@ const QuestionsSection = () => {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+                  className="w-full flex justify-between items-center p-4 sm:p-6 text-left focus:outline-none"
                 >
-                  <span className="text-lg font-bold pr-4 text-[#4A4A4A]">
+                  <span className="text-base sm:text-lg font-bold pr-4 text-[#4A4A4A]">
                     {faq.question}
                   </span>
                   <span
@@ -82,13 +77,13 @@ const QuestionsSection = () => {
                     }`}
                   >
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors ${
                         openIndex === index
                           ? "bg-[#7EC8E3] text-white"
                           : "bg-white text-[#7A7A7A]"
                       }`}
                     >
-                      <ChevronDown size={20} />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                   </span>
                 </button>
@@ -100,7 +95,7 @@ const QuestionsSection = () => {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="px-6 pb-6 text-[#7A7A7A] leading-relaxed">
+                  <p className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-[#7A7A7A] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

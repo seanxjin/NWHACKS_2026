@@ -62,7 +62,7 @@ const TeamSection = () => {
         </div>
 
         {/* Team Cards - Horizontal Flex Wrap */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-16">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
           {teamMembers.map((member, idx) => (
             <div key={idx} className="flex flex-col items-center group">
               {/* Circular Avatar Frame */}
@@ -138,8 +138,8 @@ const TeamSection = () => {
         </div>
 
         {/* Fun tagline */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-soft border border-[#E5E5E5] hover:shadow-lg transition-all duration-300">
+        <div className="text-center mt-12 sm:mt-16">
+          <div className="inline-flex flex-wrap justify-center items-center gap-2 px-4 sm:px-6 py-3 bg-white rounded-full shadow-soft border border-[#E5E5E5] hover:shadow-lg transition-all duration-300">
             <span className="text-[#7A7A7A] font-medium">Built with</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

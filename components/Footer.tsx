@@ -51,7 +51,7 @@ const Footer = () => {
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#7EC8E3]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
           {/* Column 1: Brand & Mission */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -151,22 +151,8 @@ const Footer = () => {
         </div>
 
         {/* Disclaimer Card */}
-        <div className="mt-12 p-4 bg-white/50 backdrop-blur-sm rounded-[16px] border border-[#7EC8E3]/20 shadow-sm">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 text-center md:text-left">
-            <div className="p-2 bg-[#FFAEBC]/20 rounded-full text-[#FF8FA3]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
+        <div className="mt-10 sm:mt-12 p-4 bg-white/50 backdrop-blur-sm rounded-[16px] border border-[#7EC8E3]/20 shadow-sm">
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
             <p className="text-sm text-[#5A5A5A]">
               <span className="font-bold text-[#4A4A4A]">Important:</span> Rambl
               is not a substitute for professional mental health care. If you or
@@ -179,30 +165,24 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#E5E5E5] mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#9A9A9A]">
-            <div>
-              © 2026 Rambl. Crafted for{" "}
-              <span className="font-medium text-[#7EC8E3]">nwHacks</span>.
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#9A9A9A] w-full">
+            {/* Left Side Element */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span>Made with</span>
+              <svg
+                className="w-3 h-3 text-[#FFAEBC]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              <span>and good vibes ✨</span>
             </div>
 
-            <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-[#4A4A4A] transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-[#4A4A4A] transition-colors">
-                Terms of Service
-              </a>
-              <div className="flex items-center gap-1.5">
-                <span>Made with</span>
-                <svg
-                  className="w-3 h-3 text-[#FFAEBC]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-                <span>and good vibes ✨</span>
-              </div>
+            {/* Right Side Element */}
+            <div className="text-center sm:text-right">
+              © 2026 Rambl. Crafted for{" "}
+              <span className="font-medium text-[#7EC8E3]">nwHacks</span>.
             </div>
           </div>
         </div>
