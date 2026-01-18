@@ -15,7 +15,9 @@ export default function DashboardPage() {
     const checkAuth = async () => {
       // In a real app, you would check a cookie, JWT, or use a hook from
       // an auth provider like NextAuth, Clerk, or Supabase.
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
       if (!session) {
         router.push("/login");
@@ -43,40 +45,13 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#FFF9F5] flex">
-      {/* Sidebar Navigation */}
-      <aside className="w-64 bg-white border-r border-[#F5F5F5] hidden md:flex flex-col p-6">
-        <div className="mb-10 px-2">
-          <h2 className="text-2xl font-bold text-[#7EC8E3]">Rambl</h2>
-        </div>
-
-        <nav className="flex-1 space-y-2">
-          <button className="w-full text-left px-4 py-3 rounded-2xl bg-[#7EC8E3] text-white font-medium transition-colors">
-            🏠 Dashboard
-          </button>
-          <button className="w-full text-left px-4 py-3 rounded-2xl text-[#7A7A7A] hover:bg-[#FBE7C6] hover:text-[#4A4A4A] transition-colors">
-            📝 My Rambles
-          </button>
-          <button className="w-full text-left px-4 py-3 rounded-2xl text-[#7A7A7A] hover:bg-[#A0E7E5] hover:text-[#4A4A4A] transition-colors">
-            🌟 Favorites
-          </button>
-        </nav>
-
-        <button
-          onClick={() => {
-            localStorage.removeItem("rambl_session");
-            router.push("/login");
-          }}
-          className="mt-auto px-4 py-3 text-[#7A7A7A] hover:text-pink-400 transition-colors text-sm"
-        >
-          Sign Out
-        </button>
-      </aside>
-
       {/* Main Content Area */}
       <main className="flex-1 p-8 md:p-12 overflow-y-auto">
         <header className="flex justify-between items-center mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-[#4A4A4A]">Welcome back! {userEmail}</h1>
+            <h1 className="text-3xl font-bold text-[#4A4A4A]">
+              Welcome back! {userEmail}
+            </h1>
             <p className="text-[#7A7A7A]">What&apos;s on your mind today?</p>
           </div>
           <div className="w-12 h-12 bg-[#FFAEBC] rounded-full flex items-center justify-center shadow-pastel-pink">
