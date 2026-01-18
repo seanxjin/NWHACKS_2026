@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rambl 🫧  
+### *don’t keep in your crash outs*  
+**are you ready to rambl?**
 
-## Getting Started
+**rambl** is a high-empathy mental health support app built for one thing:  
+helping you **let it out safely** when you’re emotionally overloaded, *then* helping you **calm down and make a plan** when you’re ready.
 
-First, run the development server:
+rambl is built to de-escalate your crashouts. It’s designed for the “emotional overwhelm” moment: when your brain is too stressed to problem-solve, and you just need somewhere judgment-free to unload.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## what is rambl?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1) The Vent (Total Catharsis)
+You open the app and **talk or type freely**.  
+No interruptions. No “helpful hints.” No lectures.  
+Just a space to **get it out**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Voice mode** makes it feel like you’re talking to a real friend who’s simply there.
 
-## Learn More
+### 2) The Empathy (Validation first)
+When you’re done, the AI **doesn’t jump into fix-it mode**.  
+It responds with **high-empathy validation** to help your intensity drop.
+The goal is to help you feel heard, grounded, and less activated.
 
-To learn more about Next.js, take a look at the following resources:
+### 3) The Game Plan (Only when you click)
+When you’re ready and willing, you tap a button and rambl turns your vent into a **clear, doable plan**, including:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- A quick way to calm down **right now**
+- A simple “script” for tough conversations  
+- 1–2 small actions you can do **today**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Why it exists
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When emotions spike, advice can feel annoying or impossible to apply.  
+rambl flips the order:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Feel heard → calm down → think clearly → take action**
+
+---
+
+## Key Features
+
+### “Crash Out → Calm Out” flow
+- Vent freely (no interruptions)
+- Get validated (no fixing)
+- Build a plan (only when invited)
+
+### Voice that feels human
+Powered by **ElevenLabs** for a calm, friendly tone (no robotic vibes).
+
+### Privacy-first by default
+- Designed to be **judgment-free + private**
+- Optional **auto-delete** so raw vents don’t live past the session
+
+### Inner Circle
+If your trusted people are asleep/busy, you can send them a **short summary** of what’s going on — without dumping 10 minutes of rant text.
+
+### Patterns
+Over time, rambl can gently surface trends like:
+- “You’ve vented about your boss four times this week”
+- “You feel most overwhelmed on Sunday nights”
+
+(So you can spot what’s actually draining you.)
+
+---
+
+## Tech Stack
+
+**Google Gemini** — the brain  
+- Understands messy context
+- Extracts root problems + themes
+- Generates calming steps + scripts + tiny action plans
+
+**ElevenLabs** — the voice  
+- Warm, human, grounding audio responses  
+- Helps voice mode feel like “talking it out”
+
+**Safety + Privacy**
+- Minimal retention by design
+- Optional auto-delete for vents
+- Summaries are share-only if **you choose to send them**
+
+---
+
+## UI / Brand Direction (Playfully Soft)
+
+rambl is inspired by the “Dumb Ways to Die” vibe:
+**soft pastels, silly bloopy mascots, and rounded typography.**
