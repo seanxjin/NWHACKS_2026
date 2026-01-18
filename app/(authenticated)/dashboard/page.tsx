@@ -4,14 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import {
-  Plus,
-  MessageCircle,
-  Flame,
-  TrendingUp,
-  Calendar,
-  Sparkles,
-} from "lucide-react";
+import { Plus, Sparkles, Lightbulb } from "lucide-react";
 import DashboardNavbar from "@/components/DashboardNavbar";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -61,7 +54,6 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState("");
   const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [allConversations, setAllConversations] = useState<Conversation[]>([]);
   const [themes, setThemes] = useState<Theme[]>([]);
   const [moodData, setMoodData] = useState<{ day: string; value: number }[]>(
     [],
@@ -87,7 +79,7 @@ export default function DashboardPage() {
         "User";
       setUserName(name);
 
-      // Load all conversations for stats
+      // Load conversations
       const { data: allConvData } = await supabase
         .from("conversations")
         .select("*")
@@ -95,7 +87,6 @@ export default function DashboardPage() {
         .order("created_at", { ascending: false });
 
       if (allConvData) {
-        setAllConversations(allConvData);
         setConversations(allConvData.slice(0, 5));
 
         // Generate mood data from conversations
@@ -153,49 +144,6 @@ export default function DashboardPage() {
     loadDashboard();
   }, [router, supabase]);
 
-  // Calculate stats
-  const totalSessions = allConversations.length;
-  const averageMood =
-    allConversations.length > 0
-      ? Math.round(
-          allConversations
-            .filter((c) => c.intensity_score !== null)
-            .reduce((acc, c) => acc + (c.intensity_score || 0), 0) /
-            allConversations.filter((c) => c.intensity_score !== null).length,
-        )
-      : 0;
-
-  // Calculate streak (consecutive days with sessions)
-  const calculateStreak = () => {
-    if (allConversations.length === 0) return 0;
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const sessionDates = allConversations.map((c) => {
-      const d = new Date(c.created_at);
-      d.setHours(0, 0, 0, 0);
-      return d.getTime();
-    });
-
-    const uniqueDates = [...new Set(sessionDates)].sort((a, b) => b - a);
-
-    let streak = 0;
-    let currentDate = today.getTime();
-
-    for (const date of uniqueDates) {
-      if (date === currentDate || date === currentDate - 86400000) {
-        streak++;
-        currentDate = date;
-      } else if (date < currentDate - 86400000) {
-        break;
-      }
-    }
-
-    return streak;
-  };
-
-  const streak = calculateStreak();
 
   if (loading) {
     return (
@@ -462,19 +410,14 @@ export default function DashboardPage() {
                   </div>
                 )}
 
-                <button
-                  className="px-4 py-2 bg-[#F5F5F5] text-[#4A4A4A] text-sm font-medium rounded-lg transition-colors cursor-pointer"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = colors.accent;
-                    e.currentTarget.style.color = "white";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#F5F5F5";
-                    e.currentTarget.style.color = "#4A4A4A";
-                  }}
+                <Link
+                  href={`/next-steps/${conversation.id}`}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all cursor-pointer text-white"
+                  style={{ backgroundColor: colors.accent }}
                 >
-                  View
-                </button>
+                  <Lightbulb size={16} />
+                  Next Steps
+                </Link>
               </div>
             ))}
 
