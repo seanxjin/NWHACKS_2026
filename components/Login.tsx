@@ -170,7 +170,7 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
           Don&apos;t have an account?{" "}
           <button
             onClick={onSwitchToSignUp}
-            className="text-[#FFAEBC] font-bold hover:underline cursor-pointer"
+            className="text-[#7EC8E3] font-bold hover:underline cursor-pointer"
           >
             Create an Account
           </button>
