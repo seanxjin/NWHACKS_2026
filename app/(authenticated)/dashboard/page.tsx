@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { LogOut, User, Plus } from "lucide-react";
-import Image from "next/image";
+import { Plus } from "lucide-react";
+import DashboardNavbar from "@/components/DashboardNavbar";
 
 // Mock data for the mood chart
 const moodData = [
@@ -101,11 +101,6 @@ export default function DashboardPage() {
     checkAuth();
   }, [router, supabase.auth]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FFF9F5]">
@@ -132,36 +127,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#FFF9F5] flex flex-col">
-      {/* Top Navigation Bar */}
-      <nav className="bg-white border-b border-[#F0F0F0] px-6 py-4 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon.svg"
-              alt="Ramble logo"
-              width={32}
-              height={32}
-              className="w-8 h-8"
-            />
-            <span className="text-2xl font-bold text-[#4A4A4A]">Ramble</span>
-          </div>
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleLogout}
-              className="w-10 h-10 rounded-full bg-[#F5F5F5] flex items-center justify-center text-[#7A7A7A] hover:bg-red-50 hover:text-red-500 transition-all cursor-pointer"
-              title="Log out"
-            >
-              <LogOut size={18} />
-            </button>
-            <div className="w-10 h-10 rounded-full bg-[#7EC8E3] flex items-center justify-center">
-              <User size={18} className="text-white" />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <DashboardNavbar />
 
       {/* Main Content */}
       <main className="flex-1 px-6 py-8 max-w-7xl mx-auto w-full">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 const Footer = () => {
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -59,12 +60,13 @@ const Footer = () => {
                 rambl
               </span>
               {/* Mini mascot */}
-              <div className="w-10 h-10 bg-[#7EC8E3] rounded-blob animate-blob-wobble flex items-center justify-center shadow-sm">
-                <div className="flex gap-1">
-                  <div className="w-1.5 h-2 bg-white rounded-full" />
-                  <div className="w-1.5 h-2 bg-white rounded-full" />
-                </div>
-              </div>
+              <Image
+                src="/icon.svg"
+                alt="rambl logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <p className="text-[#7A7A7A] leading-relaxed text-sm">
               A safe space for your thoughts. Ramble freely, without judgment.
