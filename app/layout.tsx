@@ -20,10 +20,14 @@ export const metadata: Metadata = {
     "A playfully soft platform to help you ramble through your thoughts",
   applicationName: "Rambl",
 
+  alternates: {
+    canonical: "./",
+  },
+
   icons: {
-    icon: "/simple.svg", // SVGs are fine here for modern browsers
+    icon: "/simple.svg",
     shortcut: "/simple.svg",
-    apple: "/icon.png", // Ideally, use a PNG for Apple Touch Icon as well for best support
+    apple: "/icon.png",
   },
 
   openGraph: {
@@ -34,9 +38,9 @@ export const metadata: Metadata = {
     siteName: "Rambl",
     images: [
       {
-        url: "/icon.png", // CHANGED: Use PNG or JPG here. SVG will not render on social cards.
-        width: 1200,
-        height: 630,
+        url: "/icon.png",
+        width: 500,
+        height: 500,
         alt: "Rambl preview",
       },
     ],
@@ -48,7 +52,6 @@ export const metadata: Metadata = {
     title: "Rambl",
     description:
       "A playfully soft platform to help you ramble through your thoughts",
-    // CHANGED: Use PNG or JPG here
     images: ["/icon.png"],
   },
 
