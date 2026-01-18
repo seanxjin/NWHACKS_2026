@@ -1,42 +1,100 @@
 import React from "react";
 
 const TeamSection = () => {
-  return (
-    <section id="team" className="scroll-mt-24 py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="w-full aspect-square bg-[#FFAEBC] rounded-3xl opacity-10 absolute -top-4 -left-4"></div>
-            <div className="w-full aspect-square bg-gray-100 rounded-3xl relative flex items-center justify-center overflow-hidden">
-              {/* Placeholder for About Image */}
-              <span className="text-gray-400 font-bold">Team Photo</span>
-            </div>
-          </div>
+  const teamMembers = [
+    {
+      name: "David",
+      title: "Full Stack Developer",
+      color: "#7EC8E3",
+      emoji: "🚀",
+    },
+    {
+      name: "Sean",
+      title: "AI/ML Engineer",
+      color: "#FFAEBC",
+      emoji: "🤖",
+    },
+    {
+      name: "Daniel",
+      title: "Backend Developer",
+      color: "#B4F8C8",
+      emoji: "⚡",
+    },
+    {
+      name: "Cindy",
+      title: "UI/UX Designer",
+      color: "#FBE7C6",
+      emoji: "🎨",
+    },
+  ];
 
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black text-[#4A4A4A] mb-6">
-              Built by creators, for creators.
-            </h2>
-            <p className="text-gray-500 text-lg mb-6 leading-relaxed">
-              Rambl started as a side project in a small coffee shop in Seattle.
-              We were tired of clunky software that slowed us down.
-            </p>
-            <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-              Today, we serve over 10,000 teams who value simplicity and
-              aesthetics just as much as power. We believe software should be a
-              breath of fresh air.
-            </p>
-            <div className="flex gap-4">
-              <div className="flex flex-col">
-                <span className="text-3xl font-black text-[#FFAEBC]">10k+</span>
-                <span className="text-sm font-bold text-gray-400">Users</span>
+  return (
+    <section id="team" className="scroll-mt-24 py-24 bg-[#FFF9F5]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#4A4A4A] mb-4">
+            the minds behind the mascots
+          </h2>
+          <p className="text-lg md:text-xl text-[#7A7A7A] max-w-2xl mx-auto">
+            A small team with big hearts, building something meaningful
+          </p>
+        </div>
+
+        {/* Team Cards - Horizontal Flex Wrap */}
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-16">
+          {teamMembers.map((member, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center group"
+            >
+              {/* Circular Avatar Frame */}
+              <div className="relative mb-4">
+                {/* Outer ring with pastel color */}
+                <div
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full p-2 transition-transform duration-300 group-hover:scale-105"
+                  style={{ backgroundColor: member.color }}
+                >
+                  {/* Inner circle - placeholder for photo */}
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+                    {/* Blob mascot as avatar placeholder */}
+                    <div
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-blob animate-blob-wobble flex items-center justify-center"
+                      style={{ backgroundColor: `${member.color}80` }}
+                    >
+                      <span className="text-3xl md:text-4xl">{member.emoji}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating decoration */}
+                <div
+                  className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center animate-float-gentle shadow-soft"
+                  style={{ backgroundColor: member.color }}
+                >
+                  <span className="text-white text-sm">✨</span>
+                </div>
               </div>
-              <div className="w-px h-12 bg-gray-200"></div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-black text-[#FFAEBC]">99%</span>
-                <span className="text-sm font-bold text-gray-400">Uptime</span>
-              </div>
+
+              {/* Name */}
+              <h3 className="text-xl md:text-2xl font-bold text-[#4A4A4A] mb-1">
+                {member.name}
+              </h3>
+
+              {/* Title */}
+              <p className="text-[#7A7A7A] font-medium">
+                {member.title}
+              </p>
             </div>
+          ))}
+        </div>
+
+        {/* Optional: Fun tagline */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center gap-3 px-8 py-4 bg-white rounded-[50px] shadow-soft">
+            <span className="text-2xl animate-float-gentle">🎉</span>
+            <span className="text-[#4A4A4A] font-medium">Built with love at nwHacks 2026</span>
+            <span className="text-2xl animate-float-gentle animation-delay-1000">💙</span>
           </div>
         </div>
       </div>

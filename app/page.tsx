@@ -6,7 +6,7 @@ import MotivationSection from "@/components/landing-page/MotivationSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-sans text-gray-900 bg-white">
+    <div className="min-h-screen bg-[#FFF9F5]">
       <HeroSection />
       <MotivationSection />
       <FeaturesSection />

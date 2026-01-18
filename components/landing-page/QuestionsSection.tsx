@@ -1,37 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const QuestionsSection = () => {
-  // Store which index is currently open (null means all closed)
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      question: "Is Rambl really free to use?",
+      question: "What exactly is Rambl?",
       answer:
-        "Yes! We offer a generous free tier that includes unlimited personal projects and basic team collaboration. For larger teams needing advanced security and priority support, we have a Pro plan.",
+        "Rambl is your friendly AI companion for when you need to vent, process emotions, or just talk through your thoughts. It's like having a patient friend who's always there to listen—no judgment, no advice unless you ask.",
     },
     {
-      question: "Can I migrate my data from other tools?",
+      question: "Is my data private and secure?",
       answer:
-        "Absolutely. We have one-click importers for Notion, Trello, and Asana. If you have a custom setup, our support team can help you map your data correctly.",
+        "Absolutely! Your conversations are encrypted and never shared with third parties. We believe your thoughts are sacred, and we treat them that way. You can also delete your data anytime.",
     },
     {
-      question: "How secure is my data?",
+      question: "Is Rambl a replacement for therapy?",
       answer:
-        "Security is our top priority. We use AES-256 encryption for data at rest and TLS 1.3 for data in transit. We also perform regular third-party security audits.",
+        "No, and we want to be clear about that. Rambl is a supportive tool for everyday emotional processing, not a substitute for professional mental health care. If you're struggling, we encourage you to seek help from a licensed professional.",
     },
     {
-      question: "Do you offer discounts for non-profits?",
+      question: "Can I use Rambl for free?",
       answer:
-        "We love supporting causes that matter. Registered non-profits and educational institutions are eligible for a 50% lifetime discount on all our paid plans.",
+        "Yes! We offer a generous free tier because we believe everyone deserves access to emotional support. Premium features are available for those who want more, but the core experience is always free.",
     },
     {
-      question: "What happens if I cancel my subscription?",
+      question: "How does the AI work?",
       answer:
-        "You own your data. If you cancel, you can export everything in standard formats (CSV, JSON, PDF). Your account will simply revert to the Free plan at the end of your billing cycle.",
+        "We use advanced language models trained to be empathetic and supportive. The AI doesn't store your personal information between sessions—it's designed to be a present, attentive listener in the moment.",
+    },
+    {
+      question: "What if I'm in crisis?",
+      answer:
+        "If you're experiencing a mental health crisis, please reach out to a crisis helpline immediately. In the US, you can call or text 988 for the Suicide & Crisis Lifeline. Rambl will also provide crisis resources if it detects you may need immediate help.",
     },
   ];
 
@@ -40,69 +44,155 @@ const QuestionsSection = () => {
   };
 
   return (
-    <section id="faq" className="scroll-mt-24 py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section id="faq" className="scroll-mt-24 py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-[#4A4A4A] mb-4">
-            Frequently Asked Questions
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#4A4A4A] mb-4">
+            frequently asked questions
           </h2>
-          <p className="text-gray-500">
-            Have a different question?{" "}
-            <a href="#" className="text-[#FFAEBC] font-bold hover:underline">
-              Contact Support
-            </a>
+          <p className="text-lg md:text-xl text-[#7A7A7A]">
+            Got questions? We&apos;ve got answers!
           </p>
         </div>
 
-        {/* Accordion Items */}
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`border border-gray-100 rounded-2xl transition-all duration-300 ${
-                openIndex === index
-                  ? "bg-gray-50 shadow-sm"
-                  : "bg-white hover:border-gray-200"
-              }`}
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
-              >
-                <span
-                  className={`text-lg font-bold ${openIndex === index ? "text-[#4A4A4A]" : "text-gray-600"}`}
-                >
-                  {faq.question}
-                </span>
-                <span
-                  className={`ml-4 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
-                >
-                  {openIndex === index ? (
-                    <div className="w-8 h-8 bg-[#FFAEBC] rounded-full flex items-center justify-center text-white">
-                      <Minus size={18} />
-                    </div>
-                  ) : (
-                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 group-hover:bg-gray-200">
-                      <Plus size={18} />
-                    </div>
-                  )}
-                </span>
-              </button>
-
+        {/* 60/40 Split Layout */}
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+          {/* Left Column - Accordion (60%) */}
+          <div className="lg:col-span-3 space-y-4">
+            {faqs.map((faq, index) => (
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                key={index}
+                className={`rounded-[24px] transition-all duration-300 overflow-hidden ${
                   openIndex === index
-                    ? "max-h-96 opacity-100"
-                    : "max-h-0 opacity-0"
+                    ? "bg-[#7EC8E3]/10 shadow-soft"
+                    : "bg-[#F5F5F5] hover:bg-[#EEEEEE]"
                 }`}
               >
-                <p className="px-6 pb-6 text-gray-500 leading-relaxed">
-                  {faq.answer}
-                </p>
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+                >
+                  <span
+                    className={`text-lg font-bold pr-4 ${
+                      openIndex === index ? "text-[#4A4A4A]" : "text-[#4A4A4A]"
+                    }`}
+                  >
+                    {faq.question}
+                  </span>
+                  <span
+                    className={`flex-shrink-0 transition-transform duration-300 ${
+                      openIndex === index ? "rotate-180" : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                        openIndex === index
+                          ? "bg-[#7EC8E3] text-white"
+                          : "bg-white text-[#7A7A7A]"
+                      }`}
+                    >
+                      <ChevronDown size={20} />
+                    </div>
+                  </span>
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openIndex === index
+                      ? "max-h-96 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p className="px-6 pb-6 text-[#7A7A7A] leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Right Column - Smiling Mascot (40%) */}
+          <div className="lg:col-span-2 hidden lg:flex items-end justify-center relative">
+            <div className="relative">
+              {/* Happy Mascot */}
+              <div className="animate-float-slow">
+                <div className="w-64 h-64 bg-[#FFAEBC] rounded-blob animate-blob-wobble opacity-90 relative">
+                  {/* Face */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Eyes - Happy/Closed */}
+                    <div className="flex gap-10 -mt-4">
+                      {/* Left eye - Happy arc */}
+                      <div className="relative">
+                        <svg className="w-10 h-6" viewBox="0 0 40 24">
+                          <path
+                            d="M4 20 Q20 0 36 20"
+                            stroke="white"
+                            strokeWidth="4"
+                            strokeLinecap="round"
+                            fill="none"
+                          />
+                        </svg>
+                      </div>
+                      {/* Right eye - Happy arc */}
+                      <div className="relative">
+                        <svg className="w-10 h-6" viewBox="0 0 40 24">
+                          <path
+                            d="M4 20 Q20 0 36 20"
+                            stroke="white"
+                            strokeWidth="4"
+                            strokeLinecap="round"
+                            fill="none"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Big smile */}
+                  <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2">
+                    <svg className="w-20 h-12" viewBox="0 0 80 48" fill="none">
+                      <path
+                        d="M8 16 Q40 56 72 16"
+                        stroke="white"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Blush circles */}
+                <div className="absolute top-1/2 -left-4 w-10 h-7 bg-[#FF8FA3] rounded-full opacity-50" />
+                <div className="absolute top-1/2 -right-4 w-10 h-7 bg-[#FF8FA3] rounded-full opacity-50" />
+              </div>
+
+              {/* Speech bubble */}
+              <div className="absolute -top-16 -right-8 animate-float animation-delay-1000">
+                <div className="bg-white rounded-[20px] px-6 py-3 shadow-soft">
+                  <span className="text-[#4A4A4A] font-medium">Ask away! 💬</span>
+                </div>
+                <div className="absolute bottom-0 left-8 w-4 h-4 bg-white rotate-45 -mb-2" />
+              </div>
+
+              {/* Floating hearts */}
+              <div className="absolute -top-4 left-4 text-2xl animate-float">💖</div>
+              <div className="absolute top-8 -right-8 text-xl animate-float-gentle animation-delay-2000">✨</div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Contact Support Link */}
+        <div className="text-center mt-12">
+          <p className="text-[#7A7A7A]">
+            Still have questions?{" "}
+            <a
+              href="#"
+              className="text-[#7EC8E3] font-bold hover:text-[#5BA3C0] transition-colors"
+            >
+              Contact our friendly support team
+            </a>
+          </p>
         </div>
       </div>
     </section>
