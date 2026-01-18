@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import AuthFooter from "@/components/AuthFooter";
 
 export default function AuthenticatedLayout({
   children,
@@ -8,7 +8,7 @@ export default function AuthenticatedLayout({
   // Each authenticated page provides its own navbar for flexibility
   return (
     <>
-      {children} <Footer />
+      {children} <AuthFooter />
     </>
   );
 }
