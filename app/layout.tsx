@@ -27,9 +27,7 @@ export default function RootLayout({
       <body
         className={`${quicksand.variable} ${quicksand.className} antialiased`}
       >
-        <NavBar />
         {children}
-        <Footer />
       </body>
     </html>
   );
