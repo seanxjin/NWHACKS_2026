@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { Plus, Sparkles, Lightbulb } from "lucide-react";
+import { Plus, Sparkles, Lightbulb, Trash2 } from "lucide-react";
 import DashboardNavbar from "@/components/DashboardNavbar";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -98,7 +98,7 @@ export default function DashboardPage() {
 
         // Calculate date 7 days ago to filter old data
         const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6 ensures we include today + 6 previous days
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
         sevenDaysAgo.setHours(0, 0, 0, 0);
 
         allConvData.forEach((conv) => {
@@ -140,6 +140,50 @@ export default function DashboardPage() {
     loadDashboard();
   }, [router, supabase]);
 
+  // Handle Delete Function
+  const handleDelete = async (id: number) => {
+    // 1. Stop propagation is handled in the button onClick,
+    // but we'll add a check here to be safe.
+
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this session? This cannot be undone.",
+      )
+    ) {
+      return;
+    }
+
+    try {
+      console.log("Attempting to delete ID:", id); // Debug log
+
+      const { data, error } = await supabase
+        .from("conversations")
+        .delete()
+        .eq("id", id)
+        .select(); // vital for verifying deletion happened
+
+      if (error) {
+        console.error("Supabase delete error:", error);
+        throw error;
+      }
+
+      // If data is empty, it means no row was found to delete
+      if (!data || data.length === 0) {
+        console.warn("No rows deleted. ID mismatch?");
+        alert("Could not find that session to delete.");
+        return;
+      }
+
+      console.log("Deleted successfully:", data);
+
+      // Remove from local state immediately
+      setConversations((prev) => prev.filter((c) => c.id !== id));
+    } catch (error) {
+      console.error("Error deleting conversation:", error);
+      alert("There was an error deleting the session.");
+    }
+  };
+
   if (loading) {
     return (
       <div
@@ -172,32 +216,25 @@ export default function DashboardPage() {
   const rawMax = Math.max(...chartMoodData.map((d) => d.value));
   const maxValue = rawMax < 4 ? 4 : rawMax;
 
-  // 2. Determine Y-Axis Ticks (Grid lines)
-  // If max is small (e.g. 4), show 0, 1, 2, 3, 4. If large, show 5 steps.
   let yTicks: number[] = [];
   if (maxValue <= 5) {
     yTicks = Array.from({ length: maxValue + 1 }, (_, i) => i);
   } else {
-    // Create 5 roughly even steps
     const step = Math.ceil(maxValue / 4);
     yTicks = [0, step, step * 2, step * 3, step * 4];
-    // Update max value to match the top tick so the line doesn't go off chart
-    // (This is optional, but makes the top line the true ceiling)
   }
   const displayMax = yTicks[yTicks.length - 1];
 
-  // 3. Dimensions
   const chartWidth = 280;
   const chartHeight = 180;
-  const paddingLeft = 35; // Increased for Y-axis labels
+  const paddingLeft = 35;
   const paddingRight = 10;
-  const paddingY = 20; // Top/Bottom padding
+  const paddingY = 20;
   const labelHeight = 20;
 
   const graphWidth = chartWidth - paddingLeft - paddingRight;
   const graphHeight = chartHeight - paddingY * 2 - labelHeight;
 
-  // 4. Map Points
   const points = chartMoodData.map((d, i) => ({
     x: paddingLeft + (i / (chartMoodData.length - 1)) * graphWidth,
     y: paddingY + graphHeight - (d.value / displayMax) * graphHeight,
@@ -289,7 +326,6 @@ export default function DashboardPage() {
                   paddingY + graphHeight - (tick / displayMax) * graphHeight;
                 return (
                   <g key={tick}>
-                    {/* Horizontal Grid Line */}
                     <line
                       x1={paddingLeft}
                       y1={yPos}
@@ -297,12 +333,11 @@ export default function DashboardPage() {
                       y2={yPos}
                       stroke="#F0F0F0"
                       strokeWidth="1"
-                      strokeDasharray={tick === 0 ? "" : "4 4"} // Dashed for non-zero
+                      strokeDasharray={tick === 0 ? "" : "4 4"}
                     />
-                    {/* Y-Axis Label */}
                     <text
                       x={paddingLeft - 10}
-                      y={yPos + 4} // Optical vertical alignment
+                      y={yPos + 4}
                       textAnchor="end"
                       className="text-[12px] fill-[#A0A0A0]"
                     >
@@ -312,7 +347,7 @@ export default function DashboardPage() {
                 );
               })}
 
-              {/* The Area Fill (Gradient) */}
+              {/* The Area Fill */}
               <path
                 d={`${linePath} L ${chartWidth - paddingRight} ${paddingY + graphHeight} L ${paddingLeft} ${paddingY + graphHeight} Z`}
                 fill={`url(#gradient-${colors.accent.replace("#", "")})`}
@@ -417,12 +452,26 @@ export default function DashboardPage() {
             {conversations.map((conversation) => (
               <div
                 key={conversation.id}
-                className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer"
+                className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all relative group"
               >
+                {/* Delete Button - Top Right */}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevents Link navigation
+                    e.stopPropagation(); // Prevents event bubbling
+                    console.log("Delete clicked for ID:", conversation.id); // Verify click works
+                    handleDelete(conversation.id);
+                  }}
+                  className="absolute top-4 right-4 p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all z-20 opacity-0 group-hover:opacity-100"
+                  title="Delete Session"
+                >
+                  <Trash2 size={18} />
+                </button>
+
                 <p className="text-xs text-[#7A7A7A] mb-1">
                   {formatDate(conversation.created_at)}
                 </p>
-                <h3 className="text-lg font-bold text-[#4A4A4A] mb-2">
+                <h3 className="text-lg font-bold text-[#4A4A4A] mb-2 pr-8">
                   {conversation.title || "Session Reflection"}
                 </h3>
 
@@ -450,7 +499,7 @@ export default function DashboardPage() {
 
                 <Link
                   href={`/next-steps/${conversation.id}`}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all cursor-pointer text-white"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all cursor-pointer text-white w-fit"
                   style={{ backgroundColor: colors.accent }}
                 >
                   <Lightbulb size={16} />
