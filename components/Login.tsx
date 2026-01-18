@@ -49,6 +49,9 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
         provider: "google",
         options: {
           redirectTo: `${location.origin}/dashboard`,
+          queryParams: {
+            prompt: 'select_account',
+          },
         },
       });
 
