@@ -62,7 +62,7 @@ const HeroSection = () => {
 
           {/* Learn More - Ghost pill button */}
           <Link
-            href="/#motivation"
+            href="#motivation"
             className="flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-[#7EC8E3] text-[#7EC8E3] font-bold text-lg rounded-[50px] hover:bg-[#7EC8E3]/10 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7EC8E3] focus:ring-offset-2"
           >
             Learn More
