@@ -32,14 +32,16 @@ const pastSessions = [
     mood: "happy",
     date: "Jan 15, 2026",
     title: "Morning Reflection",
-    summary: "Felt energized after a good night's sleep. Discussed goals for the week ahead.",
+    summary:
+      "Felt energized after a good night's sleep. Discussed goals for the week ahead.",
   },
   {
     id: 2,
     mood: "neutral",
     date: "Jan 14, 2026",
     title: "Work Stress",
-    summary: "Talked through challenges at work. Found some clarity on next steps.",
+    summary:
+      "Talked through challenges at work. Found some clarity on next steps.",
   },
   {
     id: 3,
@@ -87,9 +89,10 @@ export default function DashboardPage() {
         router.push("/login");
       } else {
         setIsAuthenticated(true);
-        const name = session.user.user_metadata?.full_name ||
-                     session.user.email?.split("@")[0] ||
-                     "User";
+        const name =
+          session.user.user_metadata?.full_name ||
+          session.user.email?.split("@")[0] ||
+          "User";
         setUserName(name);
       }
       setLoading(false);
@@ -361,35 +364,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-[#E0E0E0] bg-white px-6 py-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-[#7A7A7A]">
-            © 2026 Ramble. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="#"
-              className="text-sm text-[#7A7A7A] hover:text-[#4A4A4A] transition-colors"
-            >
-              Privacy
-            </a>
-            <a
-              href="#"
-              className="text-sm text-[#7A7A7A] hover:text-[#4A4A4A] transition-colors"
-            >
-              Terms
-            </a>
-            <a
-              href="#"
-              className="text-sm text-[#7A7A7A] hover:text-[#4A4A4A] transition-colors"
-            >
-              Help
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

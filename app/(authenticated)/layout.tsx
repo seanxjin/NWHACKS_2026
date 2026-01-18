@@ -1,4 +1,5 @@
 import AuthenticatedNavbar from "@/components/AuthenticatedNavbar";
+import Footer from "@/components/Footer";
 
 export default function AuthenticatedLayout({
   children,
@@ -9,6 +10,7 @@ export default function AuthenticatedLayout({
     <>
       <AuthenticatedNavbar />
       {children}
+      <Footer />
     </>
   );
 }
