@@ -176,11 +176,12 @@ export default function DashboardPage() {
 
   const maxValue = Math.max(...chartMoodData.map((d) => d.value), 1);
   const chartWidth = 280;
-  const chartHeight = 100;
+  const chartHeight = 180;
   const paddingX = 20;
-  const paddingY = 10;
+  const paddingY = 15;
+  const labelHeight = 25;
   const graphWidth = chartWidth - paddingX * 2;
-  const graphHeight = chartHeight - paddingY * 2;
+  const graphHeight = chartHeight - paddingY * 2 - labelHeight;
   const points = chartMoodData.map((d, i) => ({
     x: paddingX + (i / (chartMoodData.length - 1)) * graphWidth,
     y: paddingY + graphHeight - (d.value / maxValue) * graphHeight,
@@ -237,15 +238,15 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {/* Mood Chart */}
-          <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm min-h-[240px]">
+            <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-[#4A4A4A]">Mood Intensity</h2>
               <span className="text-xs text-[#7A7A7A]">7 days</span>
             </div>
 
             <svg
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-              className="w-full h-24"
+              className="w-full h-44"
               preserveAspectRatio="xMidYMid meet"
             >
               <defs>
@@ -296,9 +297,9 @@ export default function DashboardPage() {
                 <text
                   key={d.day}
                   x={paddingX + (i / (chartMoodData.length - 1)) * graphWidth}
-                  y={chartHeight - 2}
+                  y={chartHeight - 10}
                   textAnchor="middle"
-                  className="text-[8px] fill-[#7A7A7A]"
+                  className="text-[14px] fill-[#5A5A5A]"
                 >
                   {d.day}
                 </text>
@@ -307,7 +308,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Top Themes */}
-          <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm">
+          <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0] shadow-sm min-h-[240px]">
             <h2 className="font-bold text-[#4A4A4A] mb-4">Top Themes</h2>
             <div className="space-y-3">
               {themes.length > 0 ? (
@@ -339,7 +340,7 @@ export default function DashboardPage() {
           {/* Quick Check-in */}
           <Link
             href="/session"
-            className="bg-gradient-to-br from-white to-[#FAFAFA] rounded-2xl p-5 border border-[#F0F0F0] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            className="bg-gradient-to-br from-white to-[#FAFAFA] rounded-2xl p-5 border border-[#F0F0F0] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all min-h-[240px]"
           >
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
