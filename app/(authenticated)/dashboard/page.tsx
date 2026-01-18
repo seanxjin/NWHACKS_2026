@@ -2,29 +2,32 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export default function DashboardPage() {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const supabase = createClient();
+  const [userEmail, setUserEmail] = useState("");
   // Simulated authentication check
   useEffect(() => {
     const checkAuth = async () => {
       // In a real app, you would check a cookie, JWT, or use a hook from
       // an auth provider like NextAuth, Clerk, or Supabase.
-      const userToken = localStorage.getItem("rambl_session");
+      const { data: { session } } = await supabase.auth.getSession();
 
-      if (!userToken) {
+      if (!session) {
         router.push("/login");
       } else {
         setIsAuthenticated(true);
+        setUserEmail(session.user.email ?? "");
       }
       setLoading(false);
     };
 
     checkAuth();
-  }, [router]);
+  }, [router, supabase.auth]);
 
   if (loading) {
     return (
@@ -73,8 +76,8 @@ export default function DashboardPage() {
       <main className="flex-1 p-8 md:p-12 overflow-y-auto">
         <header className="flex justify-between items-center mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-[#4A4A4A]">Welcome back!</h1>
-            <p className="text-[#7A7A7A]">What's on your mind today?</p>
+            <h1 className="text-3xl font-bold text-[#4A4A4A]">Welcome back! {userEmail}</h1>
+            <p className="text-[#7A7A7A]">What&apos;s on your mind today?</p>
           </div>
           <div className="w-12 h-12 bg-[#FFAEBC] rounded-full flex items-center justify-center shadow-pastel-pink">
             <span className="text-xl">✨</span>
