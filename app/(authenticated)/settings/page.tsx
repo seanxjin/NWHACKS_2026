@@ -17,6 +17,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme, ThemeType, themeColors } from "@/context/ThemeContext";
+import UserAvatar from "@/components/UserAvatar";
 
 type TabType = "ai-config" | "profile" | "background";
 type PersonalityType = "soothing" | "clear" | "bubbly";
@@ -74,6 +75,7 @@ export default function SettingsPage() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userInitial, setUserInitial] = useState("A");
+  const [userAvatarUrl, setUserAvatarUrl] = useState<string | null>(null);
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileSaveSuccess, setProfileSaveSuccess] = useState(false);
 
@@ -97,6 +99,7 @@ export default function SettingsPage() {
       setUserName(name);
       setUserEmail(session.user.email || "");
       setUserInitial(name.charAt(0).toUpperCase());
+      setUserAvatarUrl(session.user.user_metadata?.avatar_url || null);
 
       // Load preferences from database
       const { data: preferences } = await supabase
@@ -278,10 +281,12 @@ export default function SettingsPage() {
 
         {/* Tab Bar */}
         <div className="flex items-center gap-3 mb-10">
-          {/* User Initial Badge */}
-          <div className="w-10 h-10 rounded-full bg-[#7EC8E3] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">{userInitial}</span>
-          </div>
+          {/* User Avatar Badge */}
+          <UserAvatar
+            avatarUrl={userAvatarUrl}
+            fallbackInitial={userInitial}
+            size="sm"
+          />
 
           {/* Tab Buttons */}
           <div className="flex gap-2 bg-[#F5F5F5] p-1.5 rounded-full">
@@ -530,11 +535,11 @@ export default function SettingsPage() {
               <div className="flex flex-col items-center">
                 <p className="text-sm font-bold text-[#4A4A4A] mb-4">Avatar</p>
                 <div className="relative">
-                  <div className="w-32 h-32 rounded-full bg-[#7EC8E3] flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">
-                      {userInitial}
-                    </span>
-                  </div>
+                  <UserAvatar
+                    avatarUrl={userAvatarUrl}
+                    fallbackInitial={userInitial}
+                    size="xl"
+                  />
                   <button className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full border-2 border-[#F0F0F0] flex items-center justify-center hover:bg-[#F5F5F5] transition-colors cursor-pointer shadow-sm">
                     <Camera size={18} className="text-[#7A7A7A]" />
                   </button>
