@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import { createClient } from "@/lib/supabase/client";
@@ -28,37 +29,46 @@ export default function LoginPage() {
 
   if (isCheckingAuth) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#FFF9F5] flex items-center justify-center">
         <div className="animate-pulse text-xl text-[#7A7A7A]">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-6xl grid md:grid-cols-2 gap-12 items-center">
-        {/* Left Column - Login/SignUp Component */}
-        <div className="w-full">
+    <div className="min-h-screen bg-[#FFF9F5] flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background decorative blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#FFAEBC] opacity-20 rounded-blob animate-blob-wobble" />
+        <div className="absolute top-40 -left-10 w-48 h-48 bg-[#B4F8C8] opacity-20 rounded-blob animate-blob-wobble animation-delay-2000" />
+        <div className="absolute bottom-40 right-10 w-32 h-32 bg-[#E0BBE4] opacity-20 rounded-blob animate-blob-wobble animation-delay-1000" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-[#FBE7C6] opacity-20 rounded-blob animate-blob-wobble animation-delay-3000" />
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 w-full max-w-md">
+        {/* Logo/Brand */}
+
+        {/* Login/SignUp Card */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
           {isLogin ? (
             <Login onSwitchToSignUp={() => setIsLogin(false)} />
           ) : (
             <SignUp onSwitchToLogin={() => setIsLogin(true)} />
           )}
         </div>
+      </div>
 
-        {/* Right Column - Mascot Avatar */}
-        <div className="hidden md:flex items-center justify-center">
-          <div className="w-full max-w-md aspect-square bg-gradient-to-br from-[#FFAEBC] to-pink-300 rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden">
-            {/* Decorative background pattern */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-
-            {/* Mascot placeholder - you can replace this with an actual mascot image */}
-            <div className="relative z-10 text-center">
-              <div className="w-48 h-48 mx-auto mb-6 bg-white rounded-full flex items-center justify-center shadow-xl">
-                <span className="text-6xl">🎯</span>
-              </div>
-              <p className="text-white font-bold text-xl">Welcome to Rambl</p>
-            </div>
+      {/* Floating Mascot */}
+      <div className="absolute bottom-0 right-10 z-0 pointer-events-none hidden lg:block">
+        <div className="relative animate-float-slow">
+          <div className="w-64 h-64 relative">
+            <Image
+              src="/mascot-happy.svg"
+              alt="Rambl Mascot"
+              fill
+              className="object-contain opacity-90"
+            />
           </div>
         </div>
       </div>

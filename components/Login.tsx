@@ -50,7 +50,7 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
         options: {
           redirectTo: `${location.origin}/dashboard`,
           queryParams: {
-            prompt: 'select_account',
+            prompt: "select_account",
           },
         },
       });
@@ -67,9 +67,11 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl md:text-4xl font-black text-[#4A4A4A] mb-8">
-        Welcome Back
-      </h1>
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-[#7A7A7A]">
+          welcome to back <span className="text-[#7EC8E3]">rambl</span>
+        </h1>
+      </div>
 
       {/* Error Message */}
       {error && (

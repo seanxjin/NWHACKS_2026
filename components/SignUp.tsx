@@ -94,7 +94,9 @@ export default function SignUp({ onSwitchToLogin }: SignUpProps) {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-green-800 mb-2">Check your email</h2>
+          <h2 className="text-xl font-bold text-green-800 mb-2">
+            Check your email
+          </h2>
           <p className="text-green-700 mb-4">
             We&apos;ve sent a confirmation link to <strong>{email}</strong>
           </p>
@@ -116,9 +118,11 @@ export default function SignUp({ onSwitchToLogin }: SignUpProps) {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl md:text-4xl font-black text-[#4A4A4A] mb-8">
-        Get Started
-      </h1>
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-[#7A7A7A]">
+          welcome to <span className="text-[#7EC8E3]">rambl</span>
+        </h1>
+      </div>
 
       {/* Error Message */}
       {error && (
