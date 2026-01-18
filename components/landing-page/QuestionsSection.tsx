@@ -14,11 +14,6 @@ const QuestionsSection = () => {
         "Rambl is your friendly AI companion for when you need to vent, process emotions, or just talk through your thoughts. It's like having a patient friend who's always there to listen—no judgment, no advice unless you ask.",
     },
     {
-      question: "Is my data private and secure?",
-      answer:
-        "Absolutely! Your conversations are encrypted and never shared with third parties. We believe your thoughts are sacred, and we treat them that way. You can also delete your data anytime.",
-    },
-    {
       question: "Is Rambl a replacement for therapy?",
       answer:
         "No, and we want to be clear about that. Rambl is a supportive tool for everyday emotional processing, not a substitute for professional mental health care. If you're struggling, we encourage you to seek help from a licensed professional.",
