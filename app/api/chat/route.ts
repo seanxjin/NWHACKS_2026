@@ -12,8 +12,11 @@ export async function POST(req: Request) {
         const response = result.response;
         const text = response.text();
 
-        return NextResponse.json(text);
+        return NextResponse.json({ text });
     } catch (error) {
         return NextResponse.json({ error: `Failed to Generate ${error}` }, { status: 500 });
     }
 }
+
+
+
