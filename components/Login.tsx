@@ -30,6 +30,7 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
       if (error) {
         setError(error.message);
       } else {
+        router.refresh();
         router.push("/dashboard");
       }
     } catch {
