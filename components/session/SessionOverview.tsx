@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Home, ArrowRight, Sparkles } from "lucide-react";
+import { Home, Lightbulb, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 import { createClient } from "@/lib/supabase/client";
 import { Message } from "./DialoguePhase";
@@ -29,6 +30,7 @@ export default function SessionOverview({
   const [summary, setSummary] = useState("");
   const [keywords, setKeywords] = useState<WordData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [conversationId, setConversationId] = useState<number | null>(null);
   const sessionSavedRef = useRef(false);
 
   // Extract keywords and generate summary from messages
@@ -183,6 +185,7 @@ export default function SessionOverview({
         if (conversationError) {
           console.error("Error saving conversation:", conversationError);
         } else if (conversationData) {
+          setConversationId(conversationData.id);
           // Save/update themes
           for (const keyword of keywordStrings.slice(0, 4)) {
             // Check if theme exists for this user
@@ -319,14 +322,25 @@ export default function SessionOverview({
           <Home size={20} />
           Return Home
         </button>
-        <button
-          onClick={onNewSession}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-4 text-white rounded-2xl font-semibold hover:opacity-90 transition-opacity cursor-pointer"
-          style={{ backgroundColor: colors.accent }}
-        >
-          Next Steps
-          <ArrowRight size={20} />
-        </button>
+        {conversationId ? (
+          <Link
+            href={`/next-steps/${conversationId}`}
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 text-white rounded-2xl font-semibold hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: colors.accent }}
+          >
+            <Lightbulb size={20} />
+            Next Steps
+          </Link>
+        ) : (
+          <button
+            onClick={onNewSession}
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 text-white rounded-2xl font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+            style={{ backgroundColor: colors.accent }}
+          >
+            <Lightbulb size={20} />
+            New Session
+          </button>
+        )}
       </div>
 
       {/* Session Stats */}
