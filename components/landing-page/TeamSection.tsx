@@ -6,8 +6,7 @@ const TeamSection = () => {
       name: "David",
       title: "Full Stack Developer",
       color: "#7EC8E3",
-      image:
-        "https://i.pinimg.com/236x/68/31/12/68311248ba2f6e0ba94ff6da62eac9f6.jpg",
+      image: "/photo/dliu.png",
       socials: {
         linkedin: "https://www.linkedin.com/in/davidliu906/",
         github: "https://github.com/Davooood90",
@@ -18,8 +17,7 @@ const TeamSection = () => {
       name: "Sean",
       title: "AI/ML Engineer",
       color: "#FFAEBC",
-      image:
-        "https://i.pinimg.com/236x/68/31/12/68311248ba2f6e0ba94ff6da62eac9f6.jpg",
+      image: "/photo/sj.png",
       socials: {
         linkedin: "https://www.linkedin.com/in/seanxjin/",
         github: "https://github.com/seanxjin",
@@ -30,8 +28,7 @@ const TeamSection = () => {
       name: "Daniel",
       title: "Backend Developer",
       color: "#B4F8C8",
-      image:
-        "https://i.pinimg.com/236x/68/31/12/68311248ba2f6e0ba94ff6da62eac9f6.jpg",
+      image: "/photo/dliang.png",
       socials: {
         linkedin: "https://www.linkedin.com/in/dliang4/",
         github: "https://github.com/u-iDaniel",
@@ -41,8 +38,7 @@ const TeamSection = () => {
       name: "Cindy",
       title: "UI/UX Designer",
       color: "#FBE7C6",
-      image:
-        "https://i.pinimg.com/236x/68/31/12/68311248ba2f6e0ba94ff6da62eac9f6.jpg",
+      image: "/photo/cl.png",
       socials: {
         linkedin: "https://www.linkedin.com/in/cindywu8/",
         github: "https://github.com/cindylemon",
