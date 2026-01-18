@@ -63,16 +63,33 @@ export default function NextStepsPage({
       }
 
       // Load conversation
+      // Inside your useEffect loadConversationAndGenerateSteps...
+
+      // 1. Load conversation first (as you are doing)
       const { data: convData } = await supabase
         .from("conversations")
         .select("*")
         .eq("id", id)
-        .eq("user_id", session.user.id)
         .single();
 
       if (!convData) {
         router.push("/dashboard");
         return;
+      }
+
+      // 2. NEW: Check if an action plan already exists for this session
+      const { data: existingPlan } = await supabase
+        .from("action_plans")
+        .select("*")
+        .eq("session_id", id)
+        .single();
+
+      if (existingPlan) {
+        setConversation(convData);
+        setActionSteps(existingPlan.steps);
+        setScript(existingPlan.script);
+        setIsLoading(false);
+        return; // Stop here and don't call the AI
       }
 
       setConversation(convData);
@@ -144,6 +161,14 @@ SCRIPT: [2-3 sentences they could say if approaching someone about the issue]`,
           const scriptMatch = text.match(/SCRIPT:\s*([\s\S]+?)$/);
           if (scriptMatch) {
             setScript(scriptMatch[1].trim());
+          }
+
+          if (steps.length > 0) {
+            await supabase.from("action_plans").insert({
+              session_id: id,
+              steps: steps,
+              script: scriptMatch ? scriptMatch[1].trim() : "",
+            });
           }
 
           setActionSteps(
